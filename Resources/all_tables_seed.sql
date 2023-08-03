@@ -1,4 +1,4 @@
-INSERT INTO merchant_category VALUES
+INSERT INTO merchant_cat VALUES
     (1, 'restaurant'),
     (2, 'coffee shop'),
     (3, 'bar'),
@@ -157,7 +157,7 @@ INSERT INTO merchant VALUES
     (149, 'Clark and Sons', 5),
     (150, 'Johnson and Sons', 2);
 
-INSERT INTO card_holder VALUES
+INSERT INTO cardholder VALUES
     (1, 'Robert Johnson'),
     (2, 'Shane Shaffer'),
     (3, 'Elizabeth Sawyer'),
