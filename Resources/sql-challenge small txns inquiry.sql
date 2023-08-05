@@ -15,9 +15,9 @@ Select credit_card.cardholder_id, cardholder.cardholder_nm, count(transaction.tr
 From transaction
 Inner Join credit_card on transaction.credit_card_nbr = credit_card.credit_card_nbr
 Inner Join cardholder on credit_card.cardholder_id = cardholder.cardholder_id
---Inner Join cardholder on credit_card.cardholder_id = cardholder.cardholder_id 
---Group By cardholder.cardholder_nm;
 Where transaction.transaction_amt < 2.00
 Group By credit_card.cardholder_id, cardholder.cardholder_nm
---Where transaction.transaction_amt < 2.00
 Order By txns_count_less_than_$2 desc;
+
+Select *
+From transaction;
