@@ -15,11 +15,11 @@ Module 7 SQL challenge using newfound skills to analyze historical credit card t
 
     - How can you isolate (or group) the transactions of each cardholder?
     
-        `We can create an SQL select query where we group on cardholder_id and cardholder name,and count the number of credit card transactions by carhdolder that are less than $2 each.  As a result, we observed many cardholders with numerous transactions less than $2 each, and therefore further refined and investigated the grouping in the following two ways:
+        `We can create an SQL select query where we group on cardholder_id and cardholder name, and count the number of credit card transactions by carhdolder that are less than $2 each.  As a result, we observed many cardholders with numerous transactions less than $2 each, and therefore further refined and investigated the grouping in the following two ways:`
 
-        1. Because each cardholder (defined by cardholder_id along with associated cardholder name) could hold more than one credit card, we added credit card number to the grouping to investigate whether there were any particular card(s) potentially associated with fraud.  This reflected our belief that consumer fraud can occur on multiple levels, including both general identify theft and cases of invdividual credit card theft, e.g. gas station and retail outlets card skimming.
+        `1. Because each cardholder (defined by cardholder_id along with associated cardholder name) could hold more than one credit card, we added credit card number to the grouping to investigate whether there were any particular card(s) potentially associated with fraud.  This reflected our belief that consumer fraud can occur on multiple levels, including both general identify theft and cases of invdividual credit card theft, e.g. gas station and retail outlets card skimming.`
         
-        2. We added transaction grouping by date to the 1-year period covered by the data to investigate whether there were small transaction spikes on any given day associated with the cardholder.
+        `2. We added transaction grouping by date to the 1-year period covered by the data to investigate whether there were small transaction spikes on any given day associated with the cardholder.`
 
     - Count the transactions that are less than $2.00 per cardholder.
         
@@ -29,8 +29,7 @@ Module 7 SQL challenge using newfound skills to analyze historical credit card t
 
         `Over the 2018 transaction period, we observed the following number of transactions below $2 by cardholder credit card:`
 
-        ![2018 annual small transactions by cardholder credit card.](Images/graph_visualiser-1691217177999.png)
-
+        ![2018 annual small transactions by cardholder and credit card.](Images/graph_visualiser-1691217177999.png)
 
         `On days when a transaction was made, we did not observe any cardholder with more than one transaction per day below $2:`
 
@@ -39,7 +38,6 @@ Module 7 SQL challenge using newfound skills to analyze historical credit card t
     - Is there any evidence to suggest that a credit card has been hacked? Explain your rationale.
 
         `While we don't see any unusual spikes in small transactions on a daily basis, over the one year period we do see ten or more small transactions for six credit cards associated with six different cardholders, and which may be worthy of further investigation.  There are a further 47 credit cards associated with small transactions over the year ranging in count from 2 to 9, which may also be associated with fraud, but may also be legitimate small transactions such as coffee, parking meters, and convenience store items.`
-
 
 - Take your investigation a step further by considering the time period in which potentially fraudulent transactions are made.
 
@@ -81,9 +79,17 @@ Module 7 SQL challenge using newfound skills to analyze historical credit card t
 
     - Using hvPlot, create a line plot representing the time series of transactions over the course of the year for each cardholder separately.
 
+        `Please refer to Jupyter Notebook for code and plots:` ['visual_data_analysis.ipynb'](visual_data_analysis.ipynb)
+
     - Next, to better compare their patterns, create a single line plot that contains both card holders' trend data.
-    
+
+        `Please refer to Jupyter Notebook for code and plot:` ['visual_data_analysis.ipynb'](visual_data_analysis.ipynb)
+
     - What difference do you observe between the consumption patterns? Does the difference suggest a fraudulent transaction? Explain your rationale.
+
+        `We observed a relatively random, but tight range of transactions centered around $1 - $20 for cardholder #2.  From our plot, we did not observe a pattern of systematic purchase behavior readily indicative of fraud, however, there were a number of sub-$2 transactions which could trigger further review of transaction type (i.e., merchant and merchant category) along with time of day.`
+
+        `For cardholder #18, in contrast, we observed regular lower dollar activity that might be indicative of normal daily activity, mixed with irregular and relatively infrequent spikes of large dollar activity over $500, which occurred around 7 times throughout the year, most notably four large transactions that occurred from around 10 pm to 5:30 am, which due to time of day and their random, infrequent frequency may be a sign of fraudulent activity worthy of further quantitative and qualitative investigation.`
 
 - The CEO of the biggest customer of the firm suspects that someone has used her corporate credit card without authorization in the first quarter of 2018 to pay quite expensive restaurant bills. Again, for privacy reasons, you know only that the cardholder ID in question is 25.
 
