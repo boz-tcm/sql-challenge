@@ -1,6 +1,3 @@
-# sql-challenge
-Module 7 SQL challenge using newfound skills to analyze historical credit card transactions and consumption patterns to identify possible fraudulent transactions.
-
 # Columbia Engineering FinTech Bootcamp 2023-06
 
 > Project: Module 7 SQL challenge assignment
@@ -72,6 +69,8 @@ Module 7 SQL challenge using newfound skills to analyze historical credit card t
     - Cardholder credit card small daily transactions: `cardholder_credit_card_small_txns_daily_frequency`
     - 100 Largest individual credit card transactions 7 am - 9 am: `top_100_largest_txns_7am_9am`
     - Top 5+ Merchants prone to small transactions: `top_merchants_prone_to_small_txns_aggregate_frequency`
+    - Data Analysis Question 1 for Jupyter Notebook **visual_data_analysis.ipynb**: `data_analysis_question_1_cid_02_cid_18`
+    - Data Analysis Question 2 for Jupyter Notebook **visual_data_analysis.ipynb**: `data_analysis_question_2_cid_25_h1_2018`
 
 ### <u>Part 2</U>
 

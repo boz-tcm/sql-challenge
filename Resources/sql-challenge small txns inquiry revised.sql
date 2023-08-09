@@ -116,6 +116,20 @@ Inner Join merchant_cat on merchant.merchant_cat_id = merchant_cat.merchant_cat_
 Group By merchant.merchant_nm
 Order By cat_count desc;
 
+--Data Analysis Question 1 SQL Query Code for Juptyer Notebook 'visual_data_analysis.ipynb'
+Create or Replace View data_analysis_question_1_cid_02_cid_18 as
+Select transaction.transaction_dt, credit_card.cardholder_id, cardholder.cardholder_nm, credit_card.credit_card_nbr, merchant.merchant_nm,
+merchant_cat.merchant_cat_nm, transaction.transaction_amt as txn_amt
+From transaction
+Inner Join credit_card on transaction.credit_card_nbr = credit_card.credit_card_nbr
+Inner Join cardholder on credit_card.cardholder_id = cardholder.cardholder_id
+Inner Join merchant on transaction.merchant_id = merchant.merchant_id
+Inner Join merchant_cat on merchant.merchant_cat_id = merchant_cat.merchant_cat_id
+Where credit_card.cardholder_id = 2 or credit_card.cardholder_id = 18
+Group By transaction.transaction_dt, credit_card.cardholder_id, cardholder.cardholder_nm, credit_card.credit_card_nbr, merchant.merchant_nm,
+merchant_cat.merchant_cat_nm, txn_amt
+Order By transaction.transaction_dt asc;
+
 Select *
 From merchant
 
