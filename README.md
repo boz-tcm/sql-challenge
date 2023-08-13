@@ -88,12 +88,22 @@
 
         `We observed a relatively random, but tight range of transactions centered around $1 - $20 for cardholder #2.  From our plot, we did not observe a pattern of systematic purchase behavior readily indicative of fraud, however, there were a number of sub-$2 transactions which could trigger further review of transaction type (i.e., merchant and merchant category) along with time of day.`
 
-        `For cardholder #18, in contrast, we observed regular lower dollar activity that might be indicative of normal daily activity, mixed with irregular and relatively infrequent spikes of large dollar activity over $500, which occurred around 7 times throughout the year, most notably four large transactions that occurred from around 10 pm to 5:30 am, which due to time of day and their random, infrequent frequency may be a sign of fraudulent activity worthy of further quantitative and qualitative investigation.`
+        `For cardholder #18, in contrast, we observed regular lower dollar activity that might be indicative of normal daily activity, mixed with irregular and relatively infrequent spikes of large dollar activity over $500, which occurred around 7 times throughout the year, most notably four large transactions that occurred from around 10 pm to 5:30 am, which due to time of day (overnight) and seemingly random, infrequent frequency may be a sign of fraudulent activity worthy of further quantitative and qualitative investigation.`
 
 - The CEO of the biggest customer of the firm suspects that someone has used her corporate credit card without authorization in the first quarter of 2018 to pay quite expensive restaurant bills. Again, for privacy reasons, you know only that the cardholder ID in question is 25.
 
     - Using hvPlot, create a box plot, representing the expenditure data from January 2018 to June 2018 for cardholder ID 25.
+        
+        `Two box plot views were created using hvplot for all cardholder ID 25 transactions in the first-half of 2018: 1) A single box plot for all cardholder ID 25 transaction activity occurring in the first-half of 2018; and 2) a monthly box plot for each month of activity in the first-half of 2018.  Please refer to Jupyter Notebook` ['visual_data_analysis.ipynb'](visual_data_analysis.ipynb) `for these two plots.`
 
     - Are there any outliers for cardholder ID 25? How many outliers are there per month?
+        
+        `Both views demonstrate outliers, defined as individual points plotted outside the box-and-whisker upper and lower boundaries.`
+        
+        `1. The H1 2018 aggregate box plot reveals three transaction outliers of around (estimated from graph): a) $269; b) $748; and c) $1180.  This would correspond to an outlier transaction roughly once every other month.`
+        
+        `2. The monthly box plots reveal an outlier in June 2018 at around $748.  Therefore, out of six monthly box plots, based on this interpretation, there was observed an outlier once every six months.  Because of the low frequency of transactional data for cardholder ID 25 on a monthly basis, and therefore low credibility, the other two outliers observed in the 6-month box plot were not detected, or picked up, as outliers in the monthly box plots for example, January had only two transactions, and therefore the large January transaction of $1177 did not occur within a sufficient context to detect it solely based on a monthly box plot, and similarly the other 6-month outlier of $279 in April was the only transaction in April and also lacked sufficient context to place it within the monthly box plot.`
 
     - Do you notice any anomalies? Describe your observations and conclusions.
+
+        `The aggregate 6-month box plot for the first-half of 2018 did the best job revealing anomalous restaurant transactions of $1177, $269, and $749 occurring in January, April, and June, respectively, and corroborate the CEO customer's concerns that her corporate credit card was used without authorization in the first-half of 2018 to pay unusually expensive restaurant bills inconsistent with her typical restaurant activity.`
