@@ -6,6 +6,7 @@
 
 ## Technologies Used
 - pgAdmin 7.2 with PostgreSQL 15 Database `sql-challenge_db`
+- QuickDataBaseDiagrams.com for Entity Relationship Diagram and Schema SQL File `QuickDBD_schema_sql-challenge.sql`
 - Python Version 3.10.12
 - VS Code IDE for both Jupyter Notebook `visual_data_analysis.ipynb` and a README markdown file.
 
@@ -41,7 +42,6 @@
         1. Entity Relationship Diagram for `sql-challenge_db`:
             >`QuickDBD-sql-challenge ERD.png`
         2. `sql-challenge_db` graph visualizers for various queries
-
 
 ## Data Analysis Report
 
