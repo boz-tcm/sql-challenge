@@ -4,6 +4,45 @@
 
 > Purpose: In this activity, we used our newfound SQL and Python skills to analyze historical credit card transactions and consumption patterns with the goal of identifying possible fraudulent transactions.
 
+## Technologies Used
+- pgAdmin 7.2 with PostgreSQL 15 Database `sql-challenge_db`
+- Python Version 3.10.12
+- VS Code IDE for both Jupyter Notebook `visual_data_analysis.ipynb` and a README markdown file.
+
+## Setup
+- GitHub Repository
+    - name: 'sql-challenge'
+    - location: uploaded to Bootcamp homework submission online portal, and available publicly at:
+        - [GitHub Repository](https://github.com/boz-tcm/sql-challenge): `github.com/boz-tcm/sql-challenge`
+- Python Standard Library (Version 3.10.12)
+- Python Modules:
+    - pandas
+    - sqlalchemy 1.4.49
+    - calendar
+    - hvplot.pandas
+    - holoviews
+- Jupyter Notebook(s):
+    - name: `visual_data_analysis.ipynb`
+    - location: `sql-challenge/`
+- Data
+    - location: 'pyviz-challenge/Instructions/Starter_Code/Resources/'
+    - includes: 
+        1. `sql-challenge_db` schema:
+            >`QuickDBD_schema_sql-challenge.sql`
+        2. `sql-challenge_db` seed data:
+            >`all_tables_seed.sql`
+        3. `sql-challenge_db` seeded tables validation:
+            >`sql-challenge tables seeded validation.sql`
+        4. `sql-challenge_db` core SQL queries alogn with Views and Jupyter Notebook SQL query code:
+            >`sql-challenge small txns inquiry.sql`
+- Images
+    - location: `sql-challenge/Images`
+    - includes:
+        1. Entity Relationship Diagram for `sql-challenge_db`:
+            >`QuickDBD-sql-challenge ERD.png`
+        2. `sql-challenge_db` graph visualizers for various queries
+
+
 ## Data Analysis Report
 
 ### <u>Part 1</u>
@@ -12,9 +51,9 @@
 
     - How can you isolate (or group) the transactions of each cardholder?
     
-        `We can create an SQL select query where we group on cardholder_id and cardholder name, and count the number of credit card transactions by carhdolder that are less than $2 each.  As a result, we observed many cardholders with numerous transactions less than $2 each, and therefore further refined and investigated the grouping in the following two ways:`
+        `We can create an SQL select query where we group on cardholder_id and cardholder name, and count the number of credit card transactions by cardholder that are less than $2 each.  As a result, we observed many cardholders with numerous transactions less than $2 each, and therefore further refined and investigated the grouping in the following two ways:`
 
-        `1. Because each cardholder (defined by cardholder_id along with associated cardholder name) could hold more than one credit card, we added credit card number to the grouping to investigate whether there were any particular card(s) potentially associated with fraud.  This reflected our belief that consumer fraud can occur on multiple levels, including both general identify theft and cases of invdividual credit card theft, e.g. gas station and retail outlets card skimming.`
+        `1. Because each cardholder (defined by cardholder_id along with associated cardholder name) could hold more than one credit card, we added credit card number to the grouping to investigate whether there were any particular card(s) potentially associated with fraud.  This reflected our belief that consumer fraud can occur on multiple levels, including both general identify theft and cases of individual credit card theft, e.g. gas station and retail outlets card skimming.`
         
         `2. We added transaction grouping by date to the 1-year period covered by the data to investigate whether there were small transaction spikes on any given day associated with the cardholder.`
 
@@ -34,25 +73,33 @@
 
     - Is there any evidence to suggest that a credit card has been hacked? Explain your rationale.
 
-        `While we don't see any unusual spikes in small transactions on a daily basis, over the one year period we do see ten or more small transactions for six credit cards associated with six different cardholders, and which may be worthy of further investigation.  There are a further 47 credit cards associated with small transactions over the year ranging in count from 2 to 9, which may also be associated with fraud, but may also be legitimate small transactions such as coffee, parking meters, and convenience store items.`
+        `While we don't see any unusual spikes in small transactions on a daily basis, over the one year period we do see TEN OR MORE small transactions for SIX credit cards associated with six different cardholders, and which may be worthy of further investigation.  There are a further 47 credit cards associated with small transactions over the year ranging in count from 2 to 9, which may also be associated with fraud, but may also be legitimate small transactions such as coffee, parking meters, and convenience store items.`
 
 - Take your investigation a step further by considering the time period in which potentially fraudulent transactions are made.
 
     - What are the top 100 highest transactions made between 7:00 am and 9:00 am?
 
-        `This question was initially confusing.  But ultimately interpreted as meaning the top 100 'largest' transactions, as 'highest' in contrast connoted frequency which was tested and didn't comport with or make sense within our use of the SQL 'LIMIT 100' transactions condition.  The top 100 largest indvidual transactions between 7 am and 9 am were characterized by bar and pub activity dominating the top 5 transactions, as illustrated below:`
+        `This question was initially confusing.  But ultimately interpreted as meaning the top 100 'largest' transactions, as 'highest', in contrast, connoted frequency which was tested and didn't comport with or make sense within our use of the SQL 'LIMIT 100' transactions condition.  The top 100 largest individual transactions between 7 am and 9 am were characterized by bar and pub activity dominating the top 5 transactions, as illustrated below:`
 
         ![2018 annual small transactions by cardholder credit card.](Images/graph_visualiser-1691227513449.png)
 
-        `We interpret this investigation so far as exploring a) small transactions less than $2 each, which are more likely than other transactions to go undetected by the cardholder throughout the day, regardless of the time of day; and b) separately this latest step to explore all transaction types and amounts that occur within a limited timeframe, 7 am - 9 am, before many cardholders have started their busy days legitimately transacting normal business, we interpret as another opportunity for fraudulent activity to go undetected by cardholders, regardless of transaction size.`
+        `We interpret this investigation so far as exploring a) small transactions less than $2 each, which are more likely than other transactions to go undetected by the cardholder throughout the day, regardless of time of day; and b) separately this latest step to explore all transaction types and amounts that occur within a limited timeframe (7 am - 9 am, before many cardholders have started their busy days legitimately transacting normal business), we interpret as another opportunity for fraudulent activity to go undetected by cardholders, regardless of transaction size.`
 
     - Do you see any anomalous transactions that could be fraudulent?
 
-        `We see unusual and unexpected bar and pub activity, both in terms of the type of activity and the size of the individual transaction amount, occurring between 7 am and 9 am.  These were individual transactions, as we looked at the top 100 transaction amounts by transaction_id, reflected in the above aforementioned graph.`
+        `We see unusual and unexpected bar and pub activity, both in terms of the type of activity and the size of the individual transaction amounts, occurring between 7 am and 9 am.`
 
     - Is there a higher number of fraudulent transactions made during this time frame versus the rest of the day?
 
+        `Out of 275 transactions that took place between 7 am to 9 am, nine of them were over $100, and five of those were unusual, potentially fraudulent bar and pub activity for this time of day.`
+        
+        `Outside of the 7 am - 9 am time period, we naturally observed a far higher number of transactions throughout the rest of the day, totaling 3225 transactions.  Of these 3225 transactions, 99 of them were over $100, and we saw around four unusually large coffee shop transactions occurring after 7 pm, including two around 11 pm and another after midnight.`
+
+        `The relative frequency of transactions over $100 in both periods was around 3%, however, of those $100+ transactions, the relative frequency of what we flagged as potentially unusual activity related to bars and pubs in the 7 am - 9 am period was around 55% (5/9), while the relative frequency of potentially fraudulent coffee transactions between 7:30 pm and 12:30 am was around 4% (4/99).  Although we think a more thorough investigation of the 99 100+ transactions occurring outside of 7 am - 9 am could potentially reveal additional fraudulent activity, we don't believe it would come anywhere close to the 55% frequency estimated in the  7 am - 9 am period.`
+
     - If you answered yes to the previous question, explain why you think there might be fraudulent transactions during this time frame.
+
+        `People engaged in fraud may be more motivated to do so at the start of the day and when targeted businesses, consumers, and fraudulent monitoring services may be less active and vigilant.`
 
 - What are the top 5 merchants prone to being hacked using small transactions?
 
@@ -63,12 +110,13 @@
 - Create a view for each of your queries.
 
     `Views created:`
-    - Cardholder small transactions: `cardholder_small_cc_txns_aggregate_frequency`
-    - Cardholder credit card small transactions: `cardholder_credit_card_small_txns_aggregate_frequency`
-    - Cardholder small daily transactions: `cardholder_small_cc_txns_daily_frequency`
-    - Cardholder credit card small daily transactions: `cardholder_credit_card_small_txns_daily_frequency`
-    - 100 Largest individual credit card transactions 7 am - 9 am: `top_100_largest_txns_7am_9am`
-    - Top 5+ Merchants prone to small transactions: `top_merchants_prone_to_small_txns_aggregate_frequency`
+    - Cardholder small transactions:    `cardholder_small_cc_txns_aggregate_frequency`
+    - Cardholder credit card small transactions:    `cardholder_credit_card_small_txns_aggregate_frequency`
+    - Cardholder small daily transactions:  `cardholder_small_cc_txns_daily_frequency`
+    - Cardholder credit card small daily transactions:  `cardholder_credit_card_small_txns_daily_frequency`
+    - 100 largest individual credit card transactions 7 am - 9 am:  `top_100_largest_txns_7am_9am`
+    - 100 largest individual credit card transactions remainder of day (outside 7 am - 9 am period):     `top_100_largest_txns_rest_of_day_not_7am_9am`
+    - Top 5+ merchants prone to small transactions: `top_merchants_prone_to_small_txns_aggregate_frequency`
     - Data Analysis Question 1 for Jupyter Notebook **visual_data_analysis.ipynb**: `data_analysis_question_1_cid_02_cid_18`
     - Data Analysis Question 2 for Jupyter Notebook **visual_data_analysis.ipynb**: `data_analysis_question_2_cid_25_h1_2018`
 
@@ -107,3 +155,14 @@
     - Do you notice any anomalies? Describe your observations and conclusions.
 
         `The aggregate 6-month box plot for the first-half of 2018 did the best job revealing anomalous restaurant transactions of $1177, $269, and $749 occurring in January, April, and June, respectively, and corroborate the CEO customer's concerns that her corporate credit card was used without authorization in the first-half of 2018 to pay unusually expensive restaurant bills inconsistent with her typical restaurant activity.`
+
+## Project Status
+Project is: _complete
+
+## Room for Improvement
+To do: Time permitting, will circle back to outlier-detection-challenge employing interquartile range nd standard deviation custom functions.
+
+## Contact
+Created by Todd C. Meier, tmeier@bozcompany.com - feel free to contact me!
+
+<!-- ## License --> All rights reserved.
